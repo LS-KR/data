@@ -37,7 +37,7 @@ Whatever you do, don't place your hope on that.
 */}
 
 December 29th, **2022**, Ani was found dead without any sign of life.
-Her death was confirmed by [方方](https://twitter.com/fang050722) and [铃木真依](https://twitter.com/MissSuzuki23) on Twitter.
+Her death was confirmed by [方方](https://twitter.com/fang050722) on Twitter.
 
 This world does not deserve you.
 May the other side treat you well.
