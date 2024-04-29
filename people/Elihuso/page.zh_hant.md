@@ -2,7 +2,7 @@
 name: Elihuso Quigley
 info:
     alias: ElihusoQ 英風莊 風莊 EQ HQ
-    location: 江苏南京
+    location: 江蘇南京
 ---
 
 ~~該條目已被條目角色巡迴過，甚至是由她自己設計的。~~
