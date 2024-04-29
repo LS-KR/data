@@ -1,0 +1,10 @@
+id: Elihuso
+profileUrl: ${path}/photos/profile.jpg
+info: 
+  born: '2005-06-14'
+  #died: i don't know
+websites:
+  twitter: https://twitter.com/ElihusoQ
+  mastodon: https://el5.net/@Elihuso
+  github: https://github.com/LS-KR
+  
