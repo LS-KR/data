@@ -4,6 +4,7 @@
     ],
     "exclude": [],
     "notShowOnHome": [
-      "MeowBot233"
+        "MeowBot233",
+        "Elihuso"
     ]
 }
