@@ -8,7 +8,8 @@ import metadataParser from 'markdown-yaml-metadata-parser';
 
 import { renderMdx } from "./mdx.js";
 import moment from "moment";
-import { Icon, backSVG } from "./icon.js";
+import { handleFeatures } from "./feature.js";
+import { HData, PeopleMeta } from "./data.js";
 
 const PUBLIC_DIR = "public";
 
@@ -27,26 +28,12 @@ const people = fs.readdirSync(peopleDir).map(person => ({
   distPath: path.join(projectRoot, DIST_DIR, PEOPLE_DIR, person)
 }));
 
-interface HData {
-  commentOnly: string[]
-  exclude: string[]
-  notShowOnHome: string[]
-  actualHide: string[]
-}
-
 const hdata = JSON.parse(fs.readFileSync(path.join(projectRoot, DATA_DIR, "hdata.json")).toString()) as HData;
 const commentOnlyList = hdata.commentOnly;
 const excludeList = commentOnlyList.concat(hdata.exclude);
 const notShowOnHomeList = hdata.notShowOnHome;
 const actualHide = hdata.actualHide;
-
-interface PeopleMeta {
-  id: string
-  name: string
-  profileUrl: string
-  path: string
-  sortKey: string
-}
+const trigger = hdata.trigger;
 
 // Transform `info.json5` to `info.json`.
 // Extract metadata from `people/${dirname}/info.json5` to `dist/people-list.json`.
@@ -150,14 +137,7 @@ function buildPeoplePages() {
       // Read markdown page and remove markdown meta
       let markdown = metadataParser(fs.readFileSync(path.join(srcPath, `page${lang}.md`), "utf-8")).content.replaceAll("<!--", "{/* ").replaceAll("-->", " */}");
 
-      // Handle Footnote
-      markdown = handleFootnote(markdown)
-
-      // Handle Delete Line: ~~something~~ to <del>something</del>
-      markdown = handleDeleteLine(markdown)
-
-      // Handle Icon
-      markdown = handleNoteIcon(markdown)
+      markdown = handleFeatures(markdown)
 
       // Autocorrect markdown
       markdown = autocorrect.formatFor(markdown, 'markdown')
@@ -170,32 +150,6 @@ function buildPeoplePages() {
       fs.writeFileSync(path.join(distPath, `page${lang}.json`), JSON.stringify(result));
     }
   }
-}
-
-function handleFootnote(md: string) {
-  if (!md.includes('[^')) return md
-
-  // Replace footnote references with HTML superscript tags
-  return md.replace(/\[\^(\d+)\](?::\s*(.*))?/g, (match, id, text) => text ?
-      // Footnote definition
-      `<li id="footnote-${id}">${text}<a href="#footnote-ref-${id}">${backSVG}</a></li>` :
-      // Footnote reference
-      `<sup><a href="#footnote-${id}" id="footnote-ref-${id}">${id}</a></sup>`
-  )
-  
-  // Wrap the footnote definitions in an ordered list
-  .replace(/(<li id="footnote.*<\/li>)/gs, '<ol>\n$1\n</ol>')
-}
-
-function handleDeleteLine(md: string): string {
-  if (!md.includes('~~')) return md;
-
-  return md.replace(/~~(.*?)~~/g, (match, text) => ("<del>" + text + "</del>"));
-}
-
-function handleNoteIcon(md: string): string {
-  if (!md.includes('[!')) return md;
-  return md.replace(/\[\!(\w+)\](?::\s*(.*))?/g, (match, icon, _) => (Icon[icon as string]));
 }
 
 // Copy `people/${dirname}/photos` to `dist/people/${dirname}/`.
@@ -217,6 +171,7 @@ function copyPeopleAssets() {
 // Copy files `public` to dist.
 function copyPublic() {
   fs.copySync(path.join(projectRoot, PUBLIC_DIR), path.join(projectRoot, DIST_DIR));
+  fs.writeFileSync(path.join(DIST_DIR, 'trigger-list.json'), JSON.stringify(trigger as string[]));
 }
 
 function copyComments() {

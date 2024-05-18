@@ -25,9 +25,9 @@ Please read our [How-We-Work](https://github.com/one-among-us/how-we-work/blob/m
   * Directory `/people/<userid>/`: Built data for a specific person
     * `page.js`: `page.md` built with MDX
 
-## 多语言
+## Multilingual
 
-我们正在尝试重新编写网站的多语言架构，以使其更通用，更新的方式更简洁。在这段过渡时期里，请大家尽量把简体中文作为底稿，并且用自动转换或者手动校对的方式生成繁体文稿。在新的多语言架构编写完成后，我们会重新校对所有繁体文稿。
+We are trying to rewrite the multilingual architecture of the website to make it more versatile and more concise in an updated way. During this transitional period, please try your best to use Simplified Chinese as the manuscript, and use automatic conversion or manual proofreading to generate the Traditional Chinese manuscript. After the new multilingual architecture is written, we will re-proofread all Traditional Chinese manuscripts.
 
 <!--
 ## 生成/更新繁体文稿
@@ -48,6 +48,7 @@ Please read our [How-We-Work](https://github.com/one-among-us/how-we-work/blob/m
 * `notShowOnHome`: `string[]`, if you don't want a entry show on the home, add it into this item
 * `actualHide`: `string[]`, if you don't want a entry show on the home and won't be redirected by random buttons, add it into this item.  
   If you set a entry in this list, you have no need to set it into `notShowOnHome` again.
+* `trigger`: `sreing[]`, if you think this article is likely to irritate readers and should be restricted, please set this option.
 
 ### Example
 
@@ -65,8 +66,30 @@ Please read our [How-We-Work](https://github.com/one-among-us/how-we-work/blob/m
     ],
     "actualHide": [
         "ArtsEpiphany"
+    ],
+    "trigger": [
+        "Xu_Yushu"
     ]
 }
 ```
 
 If you don’t understand how to modify it, please feel free to [Contact Us](https://one-among.us/about/).
+
+## Banner and other tagged data
+
+Markup data such as banner can be used in documents. The format is as follows:
+
+`[[ {/*JSON*/} ]]`
+
+The internal JSON schema is as follows:
+
+* `type`: The type of tagged data, can be `banner`
+* `icon`: The url of the icon. svg cannot be used.
+* `title`: Title of item.
+* `text`: Text of item.
+
+### Example
+
+```json
+[[ {"type":"banner", "icon":"https://one-among.us/favicon-large.png","title":"Some content of this entry doesn’t correspond to fact","text":"You are probably keeping track of an ongoing event, if you feel uncomfortable or stressed, we suggest that you pause browsing the relevant topics."} ]]
+```
