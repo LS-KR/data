@@ -34,6 +34,7 @@ const excludeList = commentOnlyList.concat(hdata.exclude);
 const notShowOnHomeList = hdata.notShowOnHome;
 const actualHide = hdata.actualHide;
 const trigger = hdata.trigger;
+const switchPair = hdata.switch;
 
 // Transform `info.json5` to `info.json`.
 // Extract metadata from `people/${dirname}/info.json5` to `dist/people-list.json`.
@@ -47,11 +48,13 @@ function buildPeopleInfoAndList() {
     // Compiled meta of list of people for the front page (contains keys id, name, profileUrl)
     const peopleList: PeopleMeta[] = [];
     const peopleHomeList: PeopleMeta[] = [];
+    const birthdayList = [] as [string, string][]
 
     // For each person
     for (const { dirname, srcPath, distPath } of people) {
 
       if (excludeList.includes(dirname)) continue;
+      if (isDirEmpty(srcPath)) continue;
 
       const infoFile = fs.readFileSync(path.join(srcPath, `info.yml`), "utf-8");
       const info: any = YAML.load(infoFile);
@@ -74,6 +77,12 @@ function buildPeopleInfoAndList() {
       {
         try { info.info.age = Math.abs(moment(info.info.died).diff(info.info.born, 'years', false)) }
         catch (e) { console.log(`Unable to calculate age for ${dirname}`) }
+      }
+
+      if (info.id && info.info && info.info.born) {
+        if (!actualHide.includes(info.id)) {
+          birthdayList.push([info.id, info.info.born])
+        }
       }
 
       // Convert info dict to [[key, value], ...]
@@ -123,6 +132,7 @@ function buildPeopleInfoAndList() {
     // Write people-list.json
     fs.writeFileSync(path.join(projectRoot, DIST_DIR, `people-list${lang}.json`), JSON.stringify(peopleList));
     fs.writeFileSync(path.join(projectRoot, DIST_DIR, `people-home-list${lang}.json`), JSON.stringify(peopleHomeList));
+    fs.writeFileSync(path.join(projectRoot, DIST_DIR, 'birthday-list.json'), JSON.stringify(birthdayList));
   }
 }
 
@@ -131,6 +141,7 @@ function buildPeoplePages() {
   for (const { dirname, srcPath, distPath } of people) {
 
     if (excludeList.includes(dirname)) continue;
+    if (isDirEmpty(srcPath)) continue;
 
     for (const lang of ['', '.zh_hant', '.en'])
     {
@@ -172,6 +183,7 @@ function copyPeopleAssets() {
 function copyPublic() {
   fs.copySync(path.join(projectRoot, PUBLIC_DIR), path.join(projectRoot, DIST_DIR));
   fs.writeFileSync(path.join(DIST_DIR, 'trigger-list.json'), JSON.stringify(trigger as string[]));
+  fs.writeFileSync(path.join(DIST_DIR, 'switch-pair.json'), JSON.stringify(switchPair as [string, string][]))
 }
 
 function copyComments() {
@@ -217,4 +229,8 @@ function trim(str: string, ch: string) {
     --end;
 
   return (start > 0 || end < str.length) ? str.substring(start, end) : str;
+}
+
+function isDirEmpty(dir: string): boolean {
+  return fs.readdirSync(dir).length == 0;
 }

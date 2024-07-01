@@ -1,16 +1,10 @@
 {
-    "commentOnly": [
-        "tdor"
-    ],
+    "commentOnly": ["tdor"],
     "exclude": [],
-    "notShowOnHome": [
-      "MeowBot233",
-      "Elihuso"
-    ],
-    "actualHide": [
-      "__shi_Yumiaoya__"
-    ],
-    "trigger": [
-      "__shi_Yumiaoya__"
+    "notShowOnHome": ["MeowBot233", "Elihuso"],
+    "actualHide": ["Aniloviraw"],
+    "trigger": ["Aniloviraw"],
+    "switch": [
+        ["Anilovr", "Aniloviraw"]
     ]
 }
