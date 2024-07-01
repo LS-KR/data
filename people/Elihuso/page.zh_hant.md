@@ -7,7 +7,8 @@ info:
 
 ~~該條目已被條目角色巡迴過，甚至是由她自己設計的。~~
 
-<!-- if latex formula supported, un-coment next line -->
-<!-- $$ \int_0^{+\infty} e^{-x}\ln x \mathrm{d}x $$ -->
+$$
+\int_0^{+\infty} e^{-x}\ln x \mathrm{d}x
+$$
 
 <!-- Add the entry content below. -->

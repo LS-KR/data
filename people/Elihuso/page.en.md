@@ -7,7 +7,8 @@ info:
 
 ~~This entry has been toured by entry characters and was even designed by her.~~
 
-<!-- if latex formula supported, un-coment next line -->
-<!-- $$ \int_0^{+\infty} e^{-x}\ln x \mathrm{d}x $$ -->
+$$
+\int_0^{+\infty} e^{-x}\ln x \mathrm{d}x
+$$
 
 <!-- Add the entry content below. -->
