@@ -1,0 +1,15 @@
+id: ElihusoQ
+profileUrl: ${path}/photos/profile.jpg
+info: 
+  born: '2005-06-14'
+  #died: i don't know
+websites:
+  twitter: https://twitter.com/ElihusoQ
+  mastodon: https://el5.net/@Elihuso
+  github: https://github.com/LS-KR
+  skype: https://join.skype.com/invite/xxPgUAH4lOup
+  iconify:ri:gradienter-line: https://gravatar.com/elihuso
+  iconify:ri:chat-thread-line: https://matrix.to/#/@elihusoq:matrix.org
+  google: 'mailto:elihusoq@gmail.com'
+  microsoft: 'mailto:Elihuso@outlook.com'
+  

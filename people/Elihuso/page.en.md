@@ -12,3 +12,5 @@ $$
 $$
 
 <!-- Add the entry content below. -->
+<!-- Photos in the directory named photos can be placed -->
+<!-- Don't write in the main article that I followed ani -->

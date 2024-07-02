@@ -12,3 +12,5 @@ $$
 $$
 
 <!-- Add the entry content below. -->
+<!-- 名為photos的目錄下可以放置照片-->
+<!-- 不要在主文中寫我追隨 ani 而去 -->
