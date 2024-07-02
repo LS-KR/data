@@ -2,9 +2,11 @@
     "commentOnly": ["tdor"],
     "exclude": [],
     "notShowOnHome": ["MeowBot233", "Elihuso"],
-    "actualHide": ["Aniloviraw"],
+    "actualHide": ["Aniloviraw", "ElihusoQ"],
     "trigger": ["Aniloviraw"],
     "switch": [
-        ["Anilovr", "Aniloviraw"]
+        ["Anilovr", "Aniloviraw"],
+        ["Elihuso", "ElihusoQ"],
+        ["ElihusoQ", "Elihuso"]
     ]
 }
