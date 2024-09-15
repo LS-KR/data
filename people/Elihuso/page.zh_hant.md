@@ -5,7 +5,7 @@ info:
     location: 江蘇南京
 ---
 
-[[{"type":"banner","icon":"https://one-among.us/favicon-large.png","title":"該條目已被條目角色巡迴過，甚至是由她自己設計的。","text":"如果妳認識她，請先回頭看看她是否在妳身後"}]]
+<Banner data={{"type":"banner","icon":"https://one-among.us/favicon-large.png","title":"該條目已被條目角色巡迴過，甚至是由她自己設計的。","text":"如果妳認識她，請先回頭看看她是否在妳身後"}} />
 
 $$
 \int_0^{+\infty} e^{-x}\ln x \mathrm{d}x
